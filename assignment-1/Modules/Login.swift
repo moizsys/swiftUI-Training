@@ -1,65 +1,37 @@
 //
-//  ContentView.swift
+//  Login.swift
 //  assignment-1
 //
-//  Created by Moiz Amjad on 18/12/2023.
+//  Created by Moiz Amjad on 19/12/2023.
 //
 
+import Foundation
 import SwiftUI
 
-struct ContentView: View {
-    
-    @State private var username = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var errorMessage = ""
-    @State private var isAccepted = false
+struct LoginView: View {
+    @State private var LoginEmail = ""
+    @State private var LoginPass = ""
     @State private var isPasswordVisible = false
-    @State private var isLoggedIn = false // Track the login state
-    
+    @State private var password = ""
     
     var body: some View {
-        NavigationView{
+        NavigationView {
+                // Your login screen view
             VStack {
                     // Header
                 HStack {
-                    Image("crossIcon")
-                        .padding()
                     Spacer()
-                    Text("Sign up")
+                    Text("Log in")
                         .font(.system(size: 30))
                         .fontWeight(.bold)
+                        .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     Spacer()
-                    Button(action: {
-                        isLoggedIn.toggle()
-                    }) {
-                        NavigationLink(destination: LoginView()) {
-                            
-                            Text("Login")
-                                .padding()
-                                .foregroundColor(Color(red: 93/255, green: 176/255, blue: 117/255))
-                        }
-                    }
                 }
-                .navigationBarBackButtonHidden(true) // Hide the default back button
-                .navigationBarHidden(true)
-                                
+                    //            .padding()
                 VStack {
-                        // Login Form
-                    TextField("Name", text: $username)
-                        .frame(height: 55)
-                        .padding([.horizontal], 4)
-                        .padding(4)
-                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(white: 0.85)))
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color(white: 0.95))
-                        )
                     
-                    Spacer().frame(height: 20)
-                    
-                    TextField("Email", text: $email)
+                    TextField("Eamil", text: $LoginEmail)
                         .frame(height: 55)
                         .padding([.horizontal], 4)
                         .padding(4)
@@ -69,6 +41,8 @@ struct ContentView: View {
                                 .fill(Color(white: 0.95))
                         )
                     Spacer().frame(height: 20)
+                    
+                    
                     
                     ZStack {
                         if isPasswordVisible {
@@ -107,56 +81,37 @@ struct ContentView: View {
                     }
                     
                     Spacer().frame(height: 20)
-                    HStack(alignment: .top){
-                        Button(action: {
-                            isAccepted.toggle()
-                        }) {
-                            Image(systemName: isAccepted ? "checkmark.square" : "square")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(isAccepted ? .blue : .gray)
-                            
-                            Text("I would like to receive your newsletter and other promotional information.")
-                                .font(.system(size: 14))
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.leading)
-                            
-                        }
-                        .padding(4)
-                    }
                     
                     
                     Button(action: {
                     }) {
-                        Text("Sign Up")
-                            .frame(width: 320)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color(red: 93/255, green: 176/255, blue: 117/255))
-                            .cornerRadius(40)
-                            .padding()
+                        NavigationLink(destination: Profile()) {
+                            Text("Log In")
+                                .frame(width: 320)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color(red: 93/255, green: 176/255, blue: 117/255))
+                                .cornerRadius(40)
+                                .padding()
+                        }
                     }
                     .padding()
                     
                     Text("Forgot your password?")
                         .font(.system(size: 16))
                         .fontWeight(.bold)
-                        .foregroundColor(Color.green)
+                        .foregroundColor(Color(red: 93/255, green: 176/255, blue: 117/255))
                         .multilineTextAlignment(.leading)
-                    
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .padding()
                     Spacer()
                 }
                 .padding()
             }
         }
+        .navigationBarBackButtonHidden(true) // Hide the default back button
+        .navigationBarHidden(true)
     }
 }
 
 #Preview {
-    ContentView()
+    LoginView()
 }
-
-
