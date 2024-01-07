@@ -6,6 +6,18 @@
 //
 
 import SwiftUI
+import UIKit
+
+struct SettingViewController: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UIViewController {
+        return SettingsViewController()
+
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+            // Update the view controller if needed
+    }
+}
 
 struct StudentTabView: View {
     @State var selectedIndex = 0
@@ -17,7 +29,7 @@ struct StudentTabView: View {
                     ListView(showMenu: $showMenu)
                         .tabItem { Text("Students") }
                         .tag(0)
-                    Text("Setting View")
+                    SettingViewController() // Use the UIViewControllerRepresentable here
                         .tabItem { Text("Settings") }
                         .tag(1)
                 }
